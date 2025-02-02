@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menu 1 - Patients</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+          <a href="/menu1">Menu 1</a>
+          <a href="/menu2">Menu 2</a>
+          <a href="/menu3">Menu 3</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <h1>Patients</h1>
+    <table>
+      <tr>
+        <th>Patient ID</th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Actions</th>
+      </tr>
+      <% patients.forEach(patient => { %>
+        <tr>
+          <td><%= patient.PatientID %></td>
+          <td><%= patient.Name %></td>
+          <td><%= patient.Contact %></td>
+          <td>
+            <button onclick="showUpdatePatientForm('<%= patient.PatientID %>', '<%= patient.Name %>', '<%= patient.Contact %>')">Update</button>
+            <button onclick="deletePatient('<%= patient.PatientID %>')">Delete</button>
+          </td>
+        </tr>
+      <% }); %>
+    </table>
+    <h2>Add Patient</h2>
+    <form onsubmit="insertPatient(event)">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="contact">Contact:</label>
+      <input type="text" id="contact" name="contact" required>
+      <button type="submit">Add</button>
+    </form>
+    <div id="update-patient-form" style="display: none;">
+      <h2>Update Patient</h2>
+      <form onsubmit="updatePatient(event)">
+        <label for="update-patient-id">Patient ID:</label>
+        <input type="text" id="update-patient-id" name="patientID" readonly>
+        <label for="update-name">Name:</label>
+        <input type="text" id="update-name" name="name" required>
+        <label for="update-contact">Contact:</label>
+        <input type="text" id="update-contact" name="contact" required>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

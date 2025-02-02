@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menu 3 - Appointments</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+          <a href="/menu1">Menu 1</a>
+          <a href="/menu2">Menu 2</a>
+          <a href="/menu3">Menu 3</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <h1>Appointments</h1>
+    <table>
+      <tr>
+        <th>Appointment ID</th>
+        <th>Doctor ID</th>
+        <th>Patient ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+      <% appointments.forEach(appointment => { %>
+        <tr>
+          <td><%= appointment.AppointmentID %></td>
+          <td><%= appointment.DoctorID %></td>
+          <td><%= appointment.PatientID %></td>
+          <td><%= appointment.Date %></td>
+          <td><%= appointment.Time %></td>
+          <td>
+            <button onclick="updateAppointment('<%= appointment.AppointmentID %>', '<%= appointment.DoctorID %>', '<%= appointment.PatientID %>', '<%= appointment.Date %>', '<%= appointment.Time %>')">Update</button>
+            <button onclick="deleteAppointment('<%= appointment.AppointmentID %>')">Delete</button>
+          </td>
+        </tr>
+      <% }); %>
+    </table>
+    <h2>Add Appointment</h2>
+    <form onsubmit="insertAppointment(event)">
+      <label for="doctorID">Doctor ID:</label>
+      <input type="text" id="doctorID" name="doctorID" required>
+      <label for="patientID">Patient ID:</label>
+      <input type="text" id="patientID" name="patientID" required>
+      <label for="date">Date:</label>
+      <input type="text" id="date" name="date" required>
+      <label for="time">Time:</label>
+      <input type="text" id="time" name="time" required>
+      <button type="submit">Add</button>
+    </form>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
