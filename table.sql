@@ -1,5 +1,4 @@
 
-
 CREATE TABLE Doctor (
   DoctorID/PrimaryKey INT PRIMARY KEY,
   Name VARCHAR(50),
